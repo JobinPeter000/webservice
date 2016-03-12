@@ -74,7 +74,7 @@ class Model_api extends CI_Model
 	{
 		if(isset($_REQUEST['category']))
 			{
-				$str=$_REQUEST['category'];
+				 $str=$_REQUEST['category'];
 				 if (preg_match('/^[0-9]+$/', $str))
 				 {
 				 	$response['data'] ="Invalid input format";
@@ -101,7 +101,9 @@ class Model_api extends CI_Model
 	    		} 
 
 	    }
-	    else
+	   
+	}
+	 else
 	    {
          $response['data']="no input provided";
 		$response['error_code']="500 ";
@@ -109,7 +111,6 @@ class Model_api extends CI_Model
 		  echo json_encode($response);
           
 	    }
-	}
 	    }
 
 
@@ -164,7 +165,7 @@ class Model_api extends CI_Model
 
 		if($this->db->query('call csp_update_sub_category(?,?)',$data))
 		{
-			$response['data']="successfully updateed";
+			$response['data']="successfully updated";
 			$response['error_code']="200";
 			echo json_encode($response);
 
@@ -184,6 +185,43 @@ class Model_api extends CI_Model
 	}
 
 
+function m_delsubcategory()
+{
+if(isset($_REQUEST['name']))
+{
+$str=$_REQUEST['name'];
+if (preg_match('/^[0-9]+$/', $str))
+{
+
+$data['pk_int_sub_id']=$this->input->post('name');
+if( $this->db->query('call csp_delete_sub_category(?)',$data))
+{
+
+$response['data']="successfully deleted";
+$response['error_code']="200";
+echo json_encode($response);
+}
+
+
+}
+else
+{
+$response['data'] ="Invalid input format";
+$response['error_code']="500 error";
+echo json_encode($response);
+
+
+}
+}
+else
+{
+$response['data']="no input provided";
+$response['error_code']="500 ";
+//.echo "last else ";
+ 	echo json_encode($response);
+
+}
+}
 
 
 

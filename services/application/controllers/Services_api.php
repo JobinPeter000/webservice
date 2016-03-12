@@ -14,7 +14,7 @@ class Services_api extends CI_Controller {
 	
 	public function Add_subcategory() 
 	{
-		echo ="rechd function";
+		
 		$this->load->model('Model_api');
 		$data['response']=$this->Model_api->subcategory($_POST);//function returns the response 
 		print_r($data['response']);
@@ -23,12 +23,12 @@ class Services_api extends CI_Controller {
 	public function Insert_category()
 	{
 		
-		if(isset($_REQUEST['sub']))
-		{
+		
+		
 			$this->load->model('Model_api');
 			$this->Model_api->insert_category($_POST);
 			
-		}
+		
 		
 	}
 
@@ -38,7 +38,7 @@ class Services_api extends CI_Controller {
 		
 		   
 			$this->load->model('Model_api');
-			$data['response']$this->Model_api->view_category();
+			$data['response']=$this->Model_api->view_category();
 			
 		
 	
